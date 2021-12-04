@@ -1,6 +1,8 @@
 ![Py2Marshal](https://img.shields.io/badge/WaXxX-Py2Marshal-turquoise.svg)
 ![Python | Marshal](https://img.shields.io/badge/Python-Marshal-purple.svg)
 ![Python3](https://img.shields.io/badge/Python-V3-orange.svg)
+![Python3](https://img.shields.io/badge/Python%20-Powered-pink.svg)
+![Bash](https://img.shields.io/badge/Bash%20-Installer-magenta.svg)
 # Py2Marshal
 <hr>
 
