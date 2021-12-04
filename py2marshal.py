@@ -15,17 +15,19 @@ sig2 = (r'\x57\x61\x58\x78\x58')
 user = (getpass.getuser())
 if os.path.isdir("/data/data/com.termux"):
     banner = ('one')
-elif os.path.isdir(f"/home/{user}"):
+elif os.path.isdir(f"/home/{user}" ):
     banner = ('two')
+else:
+    banner = ('one')
 if ".py" in script:
     script_pretty = (script.replace(".py",""))
 else:
-    script_pretty = script
+    script_pretty = (script)
 def lock():
     print(f"""{BOLD}
-            ┳━┓┓ ┳┏━┓┏┏┓┳━┓┳━┓┓━┓┳ ┳┳━┓┳
-            ┃━┛┗┏┛┏━┛┃┃┃┃━┫┃┳┛┗━┓┃━┫┃━┫┃
-            ┇   ┇ ┗━━┛ ┇┛ ┇┇┗┛━━┛┇ ┻┛ ┇┇━┛
+            {BLUE}┳{PURPLE}━{DARK}┓{RED}┓ {WHITE}┳{BLUE}┏{RED}━{PURPLE}┓┏{DARK}┏{WHITE}┓{BLUE}┳{RED}━{BLUE}┓{PURPLE}┳{DARK}━{BLUE}┓{WHITE}┓{RED}━{GREEN}┓{BLUE}┳ {PURPLE}┳{DARK}┳{RED}━{BLUE}┓{PURPLE}┳
+            {GREEN}┃━{BLUE}┛{PURPLE}┗┏{DARK}┛{RED}┏{BLUE}━{DARK}┛{PURPLE}┃{RED}┃{GREEN}┃{DARK}┃{PURPLE}━{BLUE}┫{GREEN}┃{WHITE}┳{DARK}┛{BLUE}┗{RED}━{PURPLE}┓{GREEN}┃{DARK}━{RED}┫{BLUE}┃{WHITE}━{GREEN}┫{DARK}┃
+            {BLUE}┇   {GREEN}┇ {DARK}┗{RED}━{WHITE}━{DARK}┛ {GREEN}┇{BLUE}┛ {RED}┇{DARK}┇┗{BLUE}┛━{GREEN}━{PURPLE}┛{DARK}┇ {GREEN}┻{BLUE}┛ {WHITE}┇{RED}┇{BLUE}━{DARK}┛
             {RED} kOcoOcoOcoOOOOOOOOOOO: '
             {RED}.OOcdOcdOcdOOOOOOOOOOO: Ok,  ;::,
             {RED}.OOd;,ckO,lOd;,ckOx;,cl :xxo. ,dx
@@ -86,7 +88,7 @@ def msg(name=None):
     add_help = (f'''{script}
 {WHITE}./{PURPLE}{script} {WHITE}-i {GREEN}script{WHITE}.{GREEN}py {WHITE}-o {GREEN}new_marshal_script{WHITE}.{GREEN}py
 ''')
-    return add_help
+    return (add_help)
 def advanced_usage():
     print(f'''
 {RED}HINT{WHITE}: {BLUE}If the script you{WHITE}'{BLUE}re trying to encode is not in the same directory{WHITE} - 
@@ -94,7 +96,7 @@ def advanced_usage():
 {BLUE}Or just run this script in the same directory as the script you want to encode{WHITE}.
 {BLUE}Example{WHITE}: 
 {WHITE}./{PURPLE}{script} {WHITE}-i {GREEN}/home/{user}/Documents/{GREEN}script{WHITE}.{GREEN}py {WHITE}-o {GREEN} new_script{WHITE}.{GREEN}py
-{BLUE}If you forget an arg in the command{WHITE}, {BLUE}you will just be prompted to enter it{WHITE}.
+{BLUE}If you forget an arg in the command{WHITE}, {BLUE}you will just be prompted to enter it{WHITE}.{BLUE}
     ''')
 class encrypt():
     def __init__(self):
@@ -102,10 +104,10 @@ class encrypt():
             lock_termux()
         elif banner == ("two"):
             lock()
-        parser = ArgumentParser(description=(f"{WHITE}::{PURPLE}{script_pretty}{WHITE}::") , usage=(msg()))
-        parser.add_argument('-i', '--input' ,required=False, action='store', help=f"{BLUE}Input script")
-        parser.add_argument('-o', '--output' ,required=False, action='store', help=f"{BLUE}Output script")
-        parser.add_argument('-u', '--usage' ,required=False, action='store_true', help=f"{BLUE}Advanced Usage")
+        parser = ArgumentParser(description=(f"{WHITE}::{PURPLE}{script_pretty}{WHITE}::{GREEN}") , usage=(msg()))
+        parser.add_argument('-i', '--input' ,required=False, action='store', help=f"{GREEN}Input script")
+        parser.add_argument('-o', '--output' ,required=False, action='store', help=f"{GREEN}Output script")
+        parser.add_argument('-u', '--usage' ,required=False, action='store_true', help=f"{GREEN}Advanced Usage")
         args = parser.parse_args()
         if args.usage:
             advanced_usage()
