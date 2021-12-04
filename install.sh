@@ -15,7 +15,7 @@ if [[ ${UID} != 0 ]]; then
     fi
 fi
 if [[ -f ./py2marshal.py ]]; then
-    if [[ -d /data/data/com.termux ]]; then
+    if [[ -d /data/data/com.termux && ${UID} != 0 ]]; then
         echo -e "${GREEN}Termux${WHITE}: ${BLUE}Installing ${PURPLE}py2marshal.py ${BLUE}to ${GREEN}/bin/${PURPLE}py2marshal"
         echo -e "${BLUE}To run it${WHITE}, ${BLUE}just type ${WHITE}'${GREEN}py2marshal${WHITE}'"
         cp py2marshal.py /data/data/com.termux/files/usr/bin/py2marshal
