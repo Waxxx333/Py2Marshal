@@ -38,7 +38,6 @@ sudo ./install.sh
 </p> <br>
 
 <p align="center">
-  <img src="https://imgur.com/CpNZqcL.png">
+  <img src="https://imgur.com/nsCFhlO.png">
 </p> <br>
-<hr>
-
+<hr><hr><hr><hr>
