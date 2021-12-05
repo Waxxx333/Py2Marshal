@@ -3,13 +3,17 @@
 ![Python3](https://img.shields.io/badge/Python-V3-orange.svg)
 ![Python3](https://img.shields.io/badge/Python%20-Powered-pink.svg)
 ![Bash](https://img.shields.io/badge/Bash%20-Installer-magenta.svg)
-# Py2Marshal
+<!--<p align="center">
+  <img src="https://imgur.com/obwRNVf.png" width="200" height="200">
+</p><hr>-->
+
+# ***Py2Marshal***
+
+### Compile Python code into Marshal from Termux, Windows or Linux. 
 <hr>
 
-### Turn Python code into Marshal from Termux, Windows or Linux. 
-<hr>
-
-#### Tested with Termux, *nix and Windows. Installer only works with Termux and Linux as of right now because, well, Windblows. Uses only standard libraries so you do not need to install any additional libraries.
+### Don't want people seeing your Python code ? Compile it into Marshal. 
+#### Tested with Termux, Linux and Windows. Installer only works with Termux and Linux as of right now because, well, Windblows. Uses only standard libraries so you do not need to install any additional libraries.
 
 #### Features tab completion script if you have bash-completion installed. 
 ##### To run:
