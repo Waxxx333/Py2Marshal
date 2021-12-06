@@ -1,4 +1,5 @@
 #!/bin/python3
+# Origin: 12/1/21
 import os, sys, marshal, getpass, readline;
 from argparse import ArgumentParser
 from time import sleep;
@@ -13,6 +14,7 @@ Version = (2)
 script = (os.path.basename(sys.argv[0]))
 sig = (r'\x57\x61\x58\x78\x58\x20\x77\x34\x73\x20\x68\x33\x72\x65\x0a')
 sig2 = (r'\x57\x61\x58\x78\x58')
+Author = ("WaXxX")
 user = (getpass.getuser())
 readline.parse_and_bind("tab: complete")
 def complete(text,state):
