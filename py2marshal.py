@@ -1,5 +1,5 @@
 #!/bin/python3
-import os, sys, marshal, getpass;
+import os, sys, marshal, getpass, readline;
 from argparse import ArgumentParser
 from time import sleep;
 WHITE=('\033[38;5;15m');
@@ -9,10 +9,17 @@ DARK=('\033[38;5;245m');
 BLUE=('\033[38;5;50m');
 RED=('\033[38;5;9m');
 BOLD=('\033[01m');
+Version = (2)
 script = (os.path.basename(sys.argv[0]))
 sig = (r'\x57\x61\x58\x78\x58\x20\x77\x34\x73\x20\x68\x33\x72\x65\x0a')
 sig2 = (r'\x57\x61\x58\x78\x58')
 user = (getpass.getuser())
+readline.parse_and_bind("tab: complete")
+def complete(text,state):
+    volcab = os.listdir()
+    results = [x for x in volcab if x.startswith(text)] + [None]
+    return results[state]
+readline.set_completer(complete)
 if os.path.isdir("/data/data/com.termux"):
     banner = ('one')
 elif os.path.isdir(f"/home/{user}" ):
@@ -51,6 +58,7 @@ def lock():
 {BLUE}┌────────────────────────────────────────────────────────────┐
 {PURPLE}│{DARK}{sig}{GREEN}{PURPLE}│
 └────────────────────────────────────────────────────────────┘
+                        {RED}Version {PURPLE}{Version}
 """)
     return
 def lock_termux():
@@ -87,6 +95,7 @@ def echo_s(data):
 def msg(name=None):                                                            
     add_help = (f'''{script}
 {WHITE}./{PURPLE}{script} {WHITE}-i {GREEN}script{WHITE}.{GREEN}py {WHITE}-o {GREEN}new_marshal_script{WHITE}.{GREEN}py
+{BLUE}Or just run {PURPLE}{script} {BLUE} and you{WHITE}'{BLUE}ll be prompted to enter {GREEN}input {BLUE}&& {GREEN}ouput {BLUE}names{WHITE}.
 ''')
     return (add_help)
 def advanced_usage():
@@ -96,7 +105,9 @@ def advanced_usage():
 {BLUE}Or just run this script in the same directory as the script you want to encode{WHITE}.
 {BLUE}Example{WHITE}: 
 {WHITE}./{PURPLE}{script} {WHITE}-i {GREEN}/home/{user}/Documents/{GREEN}script{WHITE}.{GREEN}py {WHITE}-o {GREEN} new_script{WHITE}.{GREEN}py
-{BLUE}If you forget an arg in the command{WHITE}, {BLUE}you will just be prompted to enter it{WHITE}.{BLUE}
+{BLUE}There{WHITE}'{BLUE}s no need for {GREEN}CLI {BLUE}flags{WHITE}, {BLUE}though{WHITE}. 
+{BLUE}Just run the script without and flags and you will be prompted to enter input and ouput script names{WHITE}.
+{BLUE}When at a prompt{WHITE}, {BLUE}press the tab button and you will be shown suggestions of files in the same directory you{WHITE}'{BLUE}re in{WHITE}.
     ''')
 class encrypt():
     def __init__(self):
