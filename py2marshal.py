@@ -1,5 +1,8 @@
 #!/bin/python3
-# Origin: 12/1/21
+# Origin: 12/1/21 #Revised 12/5/21
+"""My notes
+Add a directory flag
+"""
 import os, sys, marshal, getpass, readline;
 from argparse import ArgumentParser
 from time import sleep;
@@ -14,8 +17,9 @@ Version = (2)
 script = (os.path.basename(sys.argv[0]))
 sig = (r'\x57\x61\x58\x78\x58\x20\x77\x34\x73\x20\x68\x33\x72\x65\x0a')
 sig2 = (r'\x57\x61\x58\x78\x58')
-Author = ("WaXxX")
+author = ("WaXxX")
 user = (getpass.getuser())
+home = (os.path.expanduser('~'))
 readline.parse_and_bind("tab: complete")
 def complete(text,state):
     volcab = os.listdir()
@@ -121,25 +125,29 @@ class encrypt():
         parser.add_argument('-i', '--input' ,required=False, action='store', help=f"{GREEN}Input script")
         parser.add_argument('-o', '--output' ,required=False, action='store', help=f"{GREEN}Output script")
         parser.add_argument('-u', '--usage' ,required=False, action='store_true', help=f"{GREEN}Advanced Usage")
+        parser.add_argument('-p', '--prompt' ,required=False, action='store_true', help=f"{GREEN}Interactive Mode")
         args = parser.parse_args()
-        if args.usage:
-            advanced_usage()
-            sys.exit()
         try: 
+            if args.prompt:
+                self.getinfo()
+                sys.exit()
+            if args.usage:
+                advanced_usage()
+                sys.exit()
             if args.input: 
                 input_file = (args.input)
             else:
-                data = ("You didn't supply the name of the script to encode | Enter it now")
+                data = (f"{RED}You didn{WHITE}'{RED}t supply the name of the {GREEN}script{WHITE}({GREEN}--input{WHITE}) {RED}to compile {WHITE}| {BLUE}Enter it now")
                 echo_s(data)
                 input_file = input( f"{PURPLE}[ {DARK}{user}{BLUE}@{DARK}{script_pretty}{WHITE} ~ {PURPLE}]{WHITE}$ {BLUE} " )
             if args.output:
                 new_script = (args.output)
             else:
-                data = ("You didn't supply a name for the new Marshal encoded script | Enter it now")
+                data = (f"{RED}You didn{WHITE}'{RED}t supply a name for the new compiled {GREEN}script{WHITE}({GREEN}--output{WHITE}) | {GREEN}Enter it now")
                 echo_s(data)
                 new_script = input( f"{PURPLE}[ {DARK}{user}{BLUE}@{DARK}{script_pretty}{WHITE} ~ {PURPLE}]{WHITE}$ {BLUE} " )
             if input_file == new_script:
-                data = (f"{RED} You cannot name the new Marshal encoded script the same as the origianl script")
+                data = (f"{RED} You cannot name the new {PURPLE}Marshal {RED}encoded {GREEN}script {RED}the same as the origianl script")
                 echo_s(data)
                 sys.exit()
             elif input_file != new_script:
@@ -147,7 +155,25 @@ class encrypt():
         except KeyboardInterrupt:
             data = (f"{RED}\n\nKeyboard interruption\nExiting\n")
             echo_s(data)
-            sys.exit()    
+            sys.exit()   
+    def getinfo(self): 
+        try:
+            data = (f"{BLUE}Enter the name of the {GREEN}script {BLUE}you{WHITE}'{BLUE}d like to compile")
+            echo_s(data)
+            input_file = input( f"{PURPLE}[ {DARK}{user}{BLUE}@{DARK}{script_pretty}{WHITE} ~ {PURPLE}]{WHITE}$ {BLUE} " )
+            data = (f"{BLUE}Enter the name of the newly compiled script{WHITE}. {WHITE}({GREEN}--output{WHITE})")
+            echo_s(data)
+            new_script = input( f"{PURPLE}[ {DARK}{user}{BLUE}@{DARK}{script_pretty}{WHITE} ~ {PURPLE}]{WHITE}$ {BLUE} " )
+            if input_file == new_script:
+                data = (f"{RED} You cannot name the new Marshal encoded script the same as the origianl script")
+                echo_s(data)
+                self.getinfo()
+            elif input_file != new_script:
+                self.py3encode(input_file, new_script)
+        except KeyboardInterrupt:
+            data = (f"{RED}\n\nKeyboard interruption\nExiting\n")
+            echo_s(data)
+            sys.exit()
     def py3encode(self, input_file, new_script):
         data = (f"Encoding script{WHITE}: {PURPLE}{input_file} {BLUE}to {PURPLE}{new_script}")
         echo_s(data)
