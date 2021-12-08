@@ -29,7 +29,7 @@
 |-------------------|-----|-------|---|------------|
 |Compiles to Marshal    |✓    |✓      |✓  |   ✓
 | Has installer | ✓    |    ✓   |   | ✓
-| Has suggestion in-script | ✓ | ✓  | | ✓
+| Has suggestion in-script | ✓ | ✓  |✓ | ✓
 | Has bash-completion|✓ |✓ |  | ✓
 
 ##### To run:
