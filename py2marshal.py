@@ -1,9 +1,6 @@
 #!/bin/python3
-# Origin: 12/1/21 #Revised 12/5/21
-"""My notes
-Add a directory flag
-"""
-import os, sys, marshal, getpass, readline;
+# Origin: 12/1/21 #Revised 12/5/21, 12/8/21
+import os, sys, marshal, getpass;
 from argparse import ArgumentParser
 from time import sleep;
 WHITE=('\033[38;5;15m');
@@ -13,19 +10,13 @@ DARK=('\033[38;5;245m');
 BLUE=('\033[38;5;50m');
 RED=('\033[38;5;9m');
 BOLD=('\033[01m');
-Version = (2)
+Version = (3.0)
 script = (os.path.basename(sys.argv[0]))
 sig = (r'\x57\x61\x58\x78\x58\x20\x77\x34\x73\x20\x68\x33\x72\x65\x0a')
 sig2 = (r'\x57\x61\x58\x78\x58')
 author = ("WaXxX")
 user = (getpass.getuser())
 home = (os.path.expanduser('~'))
-readline.parse_and_bind("tab: complete")
-def complete(text,state):
-    volcab = os.listdir()
-    results = [x for x in volcab if x.startswith(text)] + [None]
-    return results[state]
-readline.set_completer(complete)
 if os.path.isdir("/data/data/com.termux"):
     banner = ('one')
 elif os.path.isdir(f"/home/{user}" ):
@@ -36,6 +27,34 @@ if ".py" in script:
     script_pretty = (script.replace(".py",""))
 else:
     script_pretty = (script)
+def echo_s(data):
+	blank = ' '
+	s = ''
+	for l in blank:
+		sys.stdout.write('\r')
+		sys.stdout.write(f"{PURPLE}[{BLUE}-{GREEN}*{BLUE}-{PURPLE}] {BLUE}{data} {PURPLE}[{BLUE}-{GREEN}*{BLUE}-{PURPLE}]")
+		s += (f"{l}")
+		sys.stdout.flush()
+		sleep(0.3)
+	print()
+try:
+    import readline
+    readline.parse_and_bind("tab: complete")
+    def complete(text,state):
+        volcab = os.listdir()
+        results = [x for x in volcab if x.startswith(text)] + [None]
+        return results[state]
+    readline.set_completer(complete)
+except:
+    try:
+        data = (f"{RED}Missing a dependency for tab in-script tab suggestions")
+        echo_s(data)
+        data = (f"{BLUE}Attempting to install {GREEN}readline {BLUE}now")
+        echo_s(data)
+        os.system('curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py')
+        os.system('python.exe get-pip.py install pyreadline --user')
+    except:
+        pass
 def lock():
     print(f"""{BOLD}
             {BLUE}┳{PURPLE}━{DARK}┓{RED}┓ {WHITE}┳{BLUE}┏{RED}━{PURPLE}┓┏{DARK}┏{WHITE}┓{BLUE}┳{RED}━{BLUE}┓{PURPLE}┳{DARK}━{BLUE}┓{WHITE}┓{RED}━{GREEN}┓{BLUE}┳ {PURPLE}┳{DARK}┳{RED}━{BLUE}┓{PURPLE}┳
@@ -86,18 +105,9 @@ def lock_termux():
     ┌─────────────────────┐
     {PURPLE}│{DARK}{sig2}{GREEN}{PURPLE} │
     └─────────────────────┘
+         {RED}Version {PURPLE}{Version}
  """)
     return
-def echo_s(data):
-	blank = ' '
-	s = ''
-	for l in blank:
-		sys.stdout.write('\r')
-		sys.stdout.write(f"{PURPLE}[{BLUE}-{GREEN}*{BLUE}-{PURPLE}] {BLUE}{data} {PURPLE}[{BLUE}-{GREEN}*{BLUE}-{PURPLE}]")
-		s += (f"{l}")
-		sys.stdout.flush()
-		sleep(0.3)
-	print()
 def msg(name=None):                                                            
     add_help = (f'''{script}
 {WHITE}./{PURPLE}{script} {WHITE}-i {GREEN}script{WHITE}.{GREEN}py {WHITE}-o {GREEN}new_marshal_script{WHITE}.{GREEN}py
@@ -115,7 +125,7 @@ def advanced_usage():
 {BLUE}Just run the script without and flags and you will be prompted to enter input and ouput script names{WHITE}.
 {BLUE}When at a prompt{WHITE}, {BLUE}press the tab button and you will be shown suggestions of files in the same directory you{WHITE}'{BLUE}re in{WHITE}.
     ''')
-class encrypt():
+class compile_script():
     def __init__(self):
         if banner == ("one"):
             lock_termux()
@@ -140,12 +150,20 @@ class encrypt():
                 data = (f"{RED}You didn{WHITE}'{RED}t supply the name of the {GREEN}script{WHITE}({GREEN}--input{WHITE}) {RED}to compile {WHITE}| {BLUE}Enter it now")
                 echo_s(data)
                 input_file = input( f"{PURPLE}[ {DARK}{user}{BLUE}@{DARK}{script_pretty}{WHITE} ~ {PURPLE}]{WHITE}$ {BLUE} " )
+                if input_file == 'exit':
+                    data = (f"{RED}Exiting")
+                    echo_s(data)
+                    exit(0)
             if args.output:
                 new_script = (args.output)
             else:
                 data = (f"{RED}You didn{WHITE}'{RED}t supply a name for the new compiled {GREEN}script{WHITE}({GREEN}--output{WHITE}) | {GREEN}Enter it now")
                 echo_s(data)
                 new_script = input( f"{PURPLE}[ {DARK}{user}{BLUE}@{DARK}{script_pretty}{WHITE} ~ {PURPLE}]{WHITE}$ {BLUE} " )
+                if new_script == 'exit':
+                    data = (f"{RED}Exiting")
+                    echo_s(data)
+                    exit(0)
             if input_file == new_script:
                 data = (f"{RED} You cannot name the new {PURPLE}Marshal {RED}encoded {GREEN}script {RED}the same as the origianl script")
                 echo_s(data)
@@ -161,9 +179,17 @@ class encrypt():
             data = (f"{BLUE}Enter the name of the {GREEN}script {BLUE}you{WHITE}'{BLUE}d like to compile")
             echo_s(data)
             input_file = input( f"{PURPLE}[ {DARK}{user}{BLUE}@{DARK}{script_pretty}{WHITE} ~ {PURPLE}]{WHITE}$ {BLUE} " )
+            if input_file == 'exit':
+                data = (f"{RED}Exiting")
+                echo_s(data)
+                exit(0)
             data = (f"{BLUE}Enter the name of the newly compiled script{WHITE}. {WHITE}({GREEN}--output{WHITE})")
             echo_s(data)
             new_script = input( f"{PURPLE}[ {DARK}{user}{BLUE}@{DARK}{script_pretty}{WHITE} ~ {PURPLE}]{WHITE}$ {BLUE} " )
+            if new_script == 'exit':
+                data = (f"{RED}Exiting")
+                echo_s(data)
+                exit(0)
             if input_file == new_script:
                 data = (f"{RED} You cannot name the new Marshal encoded script the same as the origianl script")
                 echo_s(data)
@@ -188,4 +214,4 @@ class encrypt():
         with open(f"{new_script}" ,'a') as out:
             out.write(f'{line0}\n{line1}\n{line2}\n{line3}\n')
         out.close()
-encrypt()
+compile_script()
