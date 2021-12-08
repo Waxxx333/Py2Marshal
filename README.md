@@ -25,18 +25,22 @@
 - When you're using it in interactive mode(not using the --input and --output flags) when at an input prompt, press tab and it will give you suggestions of files in the same working directory you're in.
 <hr> 
 
-|Feature            |Termux | Linux | Windows |
-|-------------------|-----|-------|---|
-|Compiles to Marshal    |✓    |✓      |✓  |
-| Has installer | ✓    |    ✓   |   |
-| Has suggestion in-script | ✓ | ✓  | |
-| Has bash-completion|✓ |✓
+|Feature            |Termux | Linux | Windows | WSL
+|-------------------|-----|-------|---|------------|
+|Compiles to Marshal    |✓    |✓      |✓  |   ✓
+| Has installer | ✓    |    ✓   |   | ✓
+| Has suggestion in-script | ✓ | ✓  | | ✓
+| Has bash-completion|✓ |✓ |  | ✓
 
 ##### To run:
 ```shell
 git clone https://github.com/Waxxx333/Py2Marshal
 cd Py2Marshal
 chmod +x py2marshal.py
+./py2marshal.py -h
+```
+#### Example
+```bash
 ./py2marshal.py -i script_to_encode.py -o new_marshal_script.py
 ```
 ##### To install: 
@@ -45,6 +49,7 @@ git clone https://github.com/Waxxx333/Py2Marshal
 cd Py2Marshal
 chmod +x install.sh
 sudo ./install.sh
+py2marshal -h
 ```
 
 
