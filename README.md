@@ -68,6 +68,5 @@ py2marshal -h
   - [x] Include `pip`
   - [x] Create `install.sh`
 
-##### ***__\*2nd revision__****
 <hr><hr>
 
