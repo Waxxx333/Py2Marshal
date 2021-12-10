@@ -1,5 +1,8 @@
 #!/bin/python3
-# Origin: 12/1/21 #Revised 12/5/21, 12/8/21
+# Origin: 12/1/21 #Revised 12/5/21
+"""My notes
+Add a directory flag
+"""
 import os, sys, marshal, getpass;
 from argparse import ArgumentParser
 from time import sleep;
@@ -10,7 +13,7 @@ DARK=('\033[38;5;245m');
 BLUE=('\033[38;5;50m');
 RED=('\033[38;5;9m');
 BOLD=('\033[01m');
-Version = (3.0)
+Version = (3.1)
 script = (os.path.basename(sys.argv[0]))
 sig = (r'\x57\x61\x58\x78\x58\x20\x77\x34\x73\x20\x68\x33\x72\x65\x0a')
 sig2 = (r'\x57\x61\x58\x78\x58')
@@ -75,10 +78,10 @@ def lock():
             {PURPLE}ldddd.{DARK}.OO {RED}'dx;dOd:;oOOd:;oOOOO 'x
    {BLUE}..................... {RED}lOk:xOxc:dOk:xOOO 'x
    {BLUE}ccccccccccccccccccccc {RED},Od lx ,; dd lOOO 'x
-  {BLUE}.cccccccc:...:cccccccc {RED},Od lx ,: od lOOO 'x
-  {BLUE} cccccccc. . .cccccccc {RED},Ok:xOd::dOk:xOOO 'x
-  {BLUE} ccccccccc. .ccccccccc {RED},Oxxxxxxxxxxxxxxl ;x
-  {BLUE} cccccccccc;cccccccccc {RED},k'''''''''''''',lxx
+  {BLUE}.cccccccc{RED}:...:{BLUE}cccccccc {RED},Od lx ,: od lOOO 'x
+  {BLUE} cccccccc{RED}.....{BLUE}cccccccc {RED},Ok:xOd::dOk:xOOO 'x
+  {BLUE} ccccccccc{RED}...{BLUE}ccccccccc {RED},Oxxxxxxxxxxxxxxl ;x
+  {BLUE} cccccccccc{RED};{BLUE}cccccccccc {RED},k'''''''''''''',lxx
   {BLUE} ccccccccccccccccccccc {RED}  .................
 {BLUE}┌────────────────────────────────────────────────────────────┐
 {PURPLE}│{DARK}{sig}{GREEN}{PURPLE}│
