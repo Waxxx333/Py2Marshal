@@ -206,7 +206,6 @@ class compile_script():
     def py3encode(self, input_file, new_script):
         data = (f"Encoding script{WHITE}: {PURPLE}{input_file} {BLUE}to {PURPLE}{new_script}")
         echo_s(data)
-        out_file = input_file.replace('.py', '')
         lolol = open(input_file, 'r').read()
         code = compile(lolol,'','exec')
         data = marshal.dumps(code)
