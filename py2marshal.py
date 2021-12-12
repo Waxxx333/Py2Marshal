@@ -1,5 +1,5 @@
 #!/bin/python3
-# Origin: 12/1/21 #Revised 12/5/21
+# Origin: 12/1/21 :: Updated: 12/12/21
 """My notes
 Add a directory flag
 """
