@@ -1,5 +1,5 @@
 #!/bin/python3
-# Origin: 12/1/21 :: Updated: 12/12/21
+# Origin: 12/1/21 #Revised 12/5/21
 """My notes
 Add a directory flag
 """
@@ -119,7 +119,7 @@ def msg(name=None):
     return (add_help)
 def advanced_usage():
     print(f'''
-{RED}HINT{WHITE}: {BLUE}If the script you{WHITE}'{BLUE}re trying to encode is not in the same directory{WHITE} - 
+{RED}HINT{WHITE}: {BLUE}If the script you{WHITE}'{BLUE}re trying to compile is not in the same directory{WHITE} - 
 {BLUE}you{WHITE}'{BLUE}re currently in{WHITE}, {BLUE}you will need to enter the whole path to the script{WHITE}.
 {BLUE}Or just run this script in the same directory as the script you want to encode{WHITE}.
 {BLUE}Example{WHITE}: 
@@ -127,6 +127,12 @@ def advanced_usage():
 {BLUE}There{WHITE}'{BLUE}s no need for {GREEN}CLI {BLUE}flags{WHITE}, {BLUE}though{WHITE}. 
 {BLUE}Just run the script without and flags and you will be prompted to enter input and ouput script names{WHITE}.
 {BLUE}When at a prompt{WHITE}, {BLUE}press the tab button and you will be shown suggestions of files in the same directory you{WHITE}'{BLUE}re in{WHITE}.
+{BLUE}optional arguments{WHITE}:
+{WHITE}  -h, --help       {DARK};;     {BLUE}show this help message and exit
+{WHITE}  -i {GREEN}INPUT_SCRIPT{WHITE}, --input {GREEN}INPUT_SCRIPT {DARK};; {BLUE}Input script
+{WHITE}  -o {GREEN}OUTPUT_SCRIPT{WHITE}, --output {GREEN}OUTPUT_SCRIPT {DARK};; {BLUE}Output script
+{WHITE}  -u, --usage      {DARK};;     {BLUE}Advanced Usage
+{WHITE}  -p, --prompt     {DARK};;     {BLUE}Interactive Mode
     ''')
 class compile_script():
     def __init__(self):
